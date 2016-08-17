@@ -13,6 +13,15 @@ common_trails_file = codecs.open(
 	mode = 'r'
 )
 
+special_char_replacements = {
+	u'\u200B': 'EXPLICITZEROWIDTHSPACE',
+	u'\u200E': 'EXPLICITLRM',
+	u'\u200F': 'EXPLICITRLM',
+	u'\u202C': 'EXPLICITPDF',
+	u'\u202D': 'EXPLICITLRO',
+	u'\u202D': 'EXPLICITRLO',
+}
+
 for line in common_trails_file:
 	common_trails[line.rstrip(os.linesep)] = True
 
@@ -78,20 +87,22 @@ for trail in sorted(all_trails_counts, key = all_trails_counts.get):
 	trail_counter_str = str(trail_counter)
 
 	instance_count = all_trails_counts[trail]
-	instance_count_line = 'Trail #' + trail_counter_str + ' <<' + trail + '>> found ' + str(instance_count) + ' times'
+	instance_count_line = 'Trail #' + trail_counter_str + ' "' + trail + '" found ' + str(instance_count) + ' times'
 	print instance_count_line
 
 	if instance_count == 1:
-		line = '* Trail <<' + trail + '>> found in [[' + all_trails_titles[trail].keys()[0] + "]]\n"
+		line = '* Trail "' + trail + '" found in [[' + all_trails_titles[trail].keys()[0] + "]]\n"
 		single_trails_file.write(line)
 
 		continue
 
 	trail_titles_filename = 'trails/trail_' + trail_counter_str + '_' + trail + '_titles.txt'
-	trail_titles_filename = trail_titles_filename.replace(
-		u'\u200F', # rlm
-		'EXPLICITRLM'
-	)
+
+	for special_char in special_char_replacements:
+		trail_titles_filename = trail_titles_filename.replace(
+			special_char,
+			special_char_replacements[special_char]
+		)
 
 	try:
 		trail_titles_file = codecs.open(
@@ -100,7 +111,7 @@ for trail in sorted(all_trails_counts, key = all_trails_counts.get):
 			mode = 'w'
 		)
 	except IOError:
-		problematic_trails_file.write('problematic trail <<' + trail + ">>\n")
+		problematic_trails_file.write('problematic trail "' + trail + "\"\n")
 		problematic_trails_file.write("found in:\n")
 		for title in all_trails_titles[trail]:
 			problematic_trails_file.write(title + "\n")
