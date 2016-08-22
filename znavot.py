@@ -19,7 +19,7 @@ special_char_replacements = {
 	u'\u200F': 'EXPLICITRLM',
 	u'\u202C': 'EXPLICITPDF',
 	u'\u202D': 'EXPLICITLRO',
-	u'\u202D': 'EXPLICITRLO',
+	u'\u202E': 'EXPLICITRLO',
 }
 
 for line in common_trails_file:
