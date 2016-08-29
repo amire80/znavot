@@ -15,8 +15,8 @@ common_trails = {}
 common_trails_filename = '/Users/aaharoni/dev/pwb/common-trails.he.txt'
 common_trails_file = codecs.open(
     common_trails_filename,
-    encoding = 'utf-8',
-    mode = 'r'
+    encoding='utf-8',
+    mode='r'
 )
 
 special_char_replacements = {
@@ -67,7 +67,7 @@ for entry in dump.parse():
 
         all_trails_titles[trail][title] = True
 
-    #if entry_counter == 100000:
+    # if entry_counter == 100000:
     #    break
 
     entry_counter += 1
@@ -75,34 +75,37 @@ for entry in dump.parse():
 single_trails_filename = 'trails/_single_trails.txt'
 single_trails_file = codecs.open(
     single_trails_filename,
-    encoding = 'utf-8',
-    mode = 'w'
+    encoding='utf-8',
+    mode='w'
 )
 
 problematic_trails_filename = 'trails/_problematic_trails.txt'
 problematic_trails_file = codecs.open(
     problematic_trails_filename,
-    encoding = 'utf-8',
-    mode = 'w'
+    encoding='utf-8',
+    mode='w'
 )
 
 trail_counter = 0
 
-for trail in sorted(all_trails_counts, key = all_trails_counts.get):
+for trail in sorted(all_trails_counts, key=all_trails_counts.get):
     trail_counter += 1
     trail_counter_str = str(trail_counter)
 
     instance_count = all_trails_counts[trail]
-    instance_count_line = 'Trail #' + trail_counter_str + ' "' + trail + '" found ' + str(instance_count) + ' times'
+    instance_count_line = 'Trail #' + trail_counter_str + ' "' + trail
+    instance_count_line += '" found ' + str(instance_count) + ' times'
     print instance_count_line
 
     if instance_count == 1:
-        line = '* Trail "' + trail + '" found in [[' + all_trails_titles[trail].keys()[0] + "]]\n"
+        line = '* Trail "' + trail + '" found in [['
+        line += all_trails_titles[trail].keys()[0] + "]]\n"
         single_trails_file.write(line)
 
         continue
 
-    trail_titles_filename = 'trails/trail_' + trail_counter_str + '_' + trail + '_titles.txt'
+    trail_titles_filename = 'trails/trail_' + trail_counter_str
+    trail_titles_filename += '_' + trail + '_titles.txt'
 
     for special_char in special_char_replacements:
         trail_titles_filename = trail_titles_filename.replace(
@@ -113,8 +116,8 @@ for trail in sorted(all_trails_counts, key = all_trails_counts.get):
     try:
         trail_titles_file = codecs.open(
             trail_titles_filename,
-            encoding = 'utf-8',
-            mode = 'w'
+            encoding='utf-8',
+            mode='w'
         )
     except IOError:
         problematic_trails_file.write('problematic trail "' + trail + "\"\n")
