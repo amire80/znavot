@@ -11,7 +11,7 @@ and other much-needed features some time later.
 Before running, install pywikibot:
     pip3 install pywikibot
 
-This repo includes a dummy user-config.py, which should be enough
+This repo includes a dummy `user-config.py`, which should be enough
 for processing the dump.
 
 # Invoking
@@ -20,8 +20,19 @@ for processing the dump.
 `--stop_after` is useful if you want to quickly test without processing
 the whole big dump file.
 
-Use the XXwiki-YYYYMMDD-pages-articles.xml dump from
+Use the `XXwiki-YYYYMMDD-pages-articles.xml` dump from
 [Wikimedia Downloads](http://download.wikimedia.org/).
+
+# Output
+The output goes to the TRAILS_OUT directory.
+
+The file `_single_trails.txt` includes trails that were only found once.
+
+The file `_problematic_trails.txt` includes trails that couldn't be used for
+file names.
+
+Each of the other trails gets a file called `trail_X_TRAIL_titles.txt`,
+where X is an index and TRAIL is the trail itself.
 
 Author: Amir E. Aharoni
 
