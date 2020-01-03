@@ -96,14 +96,14 @@ single_trails_file = open(
 
 problematic_trails_filename = trails_dirname + '/' + '_problematic_trails.txt'
 
-trail_counter = 0
+trail_index = 0
 
 for trail in sorted(all_trails_counts, key=all_trails_counts.get):
-    trail_counter += 1
-    trail_counter_str = str(trail_counter)
+    trail_index += 1
+    trail_index_str = str(trail_index)
 
     instance_count = all_trails_counts[trail]
-    instance_count_line = 'Trail #' + trail_counter_str + ' "' + trail
+    instance_count_line = 'Trail #' + trail_index_str + ' "' + trail
     instance_count_line += '" found ' + str(instance_count) + ' times'
     print(instance_count_line)
 
@@ -114,7 +114,7 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
 
         continue
 
-    trail_titles_filename = trails_dirname + '/' + 'trail_' + trail_counter_str
+    trail_titles_filename = trails_dirname + '/' + 'trail_' + trail_index_str
     trail_titles_filename += '_' + trail + '_titles.txt'
 
     for special_char in special_char_replacements:
