@@ -1,14 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import argparse
 import os
 import re
 import sys
 from pywikibot import xmlreader
 
-dump_filename = sys.argv[1]
+argparser = argparse.ArgumentParser()
 
-dump = xmlreader.XmlDump(dump_filename)
+argparser.add_argument(
+    "dump_filename",
+    help="the name of the dumpfile you want to process"
+)
+
+argparser.add_argument(
+    "--stop_after",
+    action="store",
+    type=int,
+    help="after how many pages to stop the processing"
+)
+
+args = argparser.parse_args()
+
+dump = xmlreader.XmlDump(args.dump_filename)
 
 common_trails = {}
 common_trails_filename = 'common-trails.he.txt'
@@ -64,8 +79,8 @@ for entry in dump.parse():
 
         all_trails_titles[trail][title] = True
 
-    # if entry_counter == 100000:
-    #    break
+    if args.stop_after and entry_counter == args.stop_after:
+        break
 
     entry_counter += 1
 
