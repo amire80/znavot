@@ -20,12 +20,29 @@ argparser.add_argument(
     help="after how many pages to stop the processing"
 )
 
+argparser.add_argument(
+    "--language",
+    action="store",
+    help="language code"
+)
+
 args = argparser.parse_args()
+
+if args.language:
+    language = args.language
+else:
+    language_code_captures = re.findall(r'^(.+)wiki', args.dump_filename)
+    if len(language_code_captures) != 1:
+        print('Cannot figure out the language code from the dump filename. ' +
+              'Please provide one explicitly using --language.')
+        exit(1)
+    language = language_code_captures[0]
 
 dump = xmlreader.XmlDump(args.dump_filename)
 
+common_trails_dir = 'common_trails'
 common_trails = {}
-common_trails_filename = 'common-trails.he.txt'
+common_trails_filename = common_trails_dir + '/' + language + '.txt'
 common_trails_file = open(
     common_trails_filename,
     encoding='utf-8',

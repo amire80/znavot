@@ -20,8 +20,20 @@ for processing the dump.
 `--stop_after` is useful if you want to quickly test without processing
 the whole big dump file.
 
+# Input
+## Content
 Use the `XXwiki-YYYYMMDD-pages-articles.xml` dump from
 [Wikimedia Downloads](http://download.wikimedia.org/).
+
+## Common trails
+Every language has a list of trails that are common and valid, and that
+don't need to be processed and counted. They are listed in a file in
+the `common_trails` directory. The file is a simple text file with one trail
+per line, and the file name is LANGUAGE_CODE.txt.
+
+The script takes the language code from the `--language` argument.
+If it's not given, it tries to figure it out from the dump file name,
+and if this fails, too, the script exits with an error.
 
 # Output
 The output goes to the TRAILS_OUT directory.
@@ -34,6 +46,7 @@ file names.
 Each of the other trails gets a file called `trail_X_TRAIL_titles.txt`,
 where X is an index and TRAIL is the trail itself.
 
+# Credits
 Author: Amir E. Aharoni
 
 License: GPL 3.0
