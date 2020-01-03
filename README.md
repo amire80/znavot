@@ -7,6 +7,13 @@ This version is super-bare. I’m just trying to release early and often.
 I’ll add running instructions, better error handling, support for other languages
 and other much-needed features some time later.
 
+# Installation
+Before running, install pywikibot:
+    pip3 install pywikibot
+
+This repo includes a dummy user-config.py, which should be enough
+for processing the dump.
+
 # Invoking
     python3 znavot.py [-h] [--stop_after STOP_AFTER] dump_filename
 
