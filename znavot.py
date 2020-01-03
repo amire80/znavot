@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import codecs
 import os
 import re
 import sys
@@ -12,8 +11,8 @@ dump_filename = sys.argv[1]
 dump = xmlreader.XmlDump(dump_filename)
 
 common_trails = {}
-common_trails_filename = '/Users/aaharoni/dev/pwb/common-trails.he.txt'
-common_trails_file = codecs.open(
+common_trails_filename = 'common-trails.he.txt'
+common_trails_file = open(
     common_trails_filename,
     encoding='utf-8',
     mode='r'
@@ -38,8 +37,8 @@ all_trails_counts = {}
 all_trails_titles = {}
 
 for entry in dump.parse():
-    title = unicode(entry.title)
-    print 'entry #' + str(entry_counter) + ': ' + title
+    title = entry.title
+    print('entry #' + str(entry_counter) + ': ' + title)
 
     # Including only main space
     if entry.ns not in ('0'):
@@ -53,9 +52,7 @@ for entry in dump.parse():
         re.UNICODE
     )
 
-    for raw_trail in trails:
-        trail = unicode(raw_trail)
-
+    for trail in trails:
         if trail in common_trails:
             continue
 
@@ -72,15 +69,19 @@ for entry in dump.parse():
 
     entry_counter += 1
 
-single_trails_filename = 'trails/_single_trails.txt'
-single_trails_file = codecs.open(
+trails_dirname = 'trails'
+if not os.path.isdir(trails_dirname):
+    os.mkdir(trails_dirname)
+
+single_trails_filename = trails_dirname + '/' + '_single_trails.txt'
+single_trails_file = open(
     single_trails_filename,
     encoding='utf-8',
     mode='w'
 )
 
-problematic_trails_filename = 'trails/_problematic_trails.txt'
-problematic_trails_file = codecs.open(
+problematic_trails_filename = trails_dirname + '/' + '_problematic_trails.txt'
+problematic_trails_file = open(
     problematic_trails_filename,
     encoding='utf-8',
     mode='w'
@@ -95,16 +96,16 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
     instance_count = all_trails_counts[trail]
     instance_count_line = 'Trail #' + trail_counter_str + ' "' + trail
     instance_count_line += '" found ' + str(instance_count) + ' times'
-    print instance_count_line
+    print(instance_count_line)
 
     if instance_count == 1:
         line = '* Trail "' + trail + '" found in [['
-        line += all_trails_titles[trail].keys()[0] + "]]\n"
+        line += list(all_trails_titles[trail])[0] + "]]\n"
         single_trails_file.write(line)
 
         continue
 
-    trail_titles_filename = 'trails/trail_' + trail_counter_str
+    trail_titles_filename = trails_dirname + '/' + 'trail_' + trail_counter_str
     trail_titles_filename += '_' + trail + '_titles.txt'
 
     for special_char in special_char_replacements:
@@ -114,7 +115,7 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
         )
 
     try:
-        trail_titles_file = codecs.open(
+        trail_titles_file = open(
             trail_titles_filename,
             encoding='utf-8',
             mode='w'
