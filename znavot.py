@@ -69,7 +69,7 @@ for entry in dump.parse():
 
     entry_counter += 1
 
-trails_dirname = 'trails'
+trails_dirname = 'TRAILS_OUT'
 if not os.path.isdir(trails_dirname):
     os.mkdir(trails_dirname)
 
