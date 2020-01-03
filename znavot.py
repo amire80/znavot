@@ -4,7 +4,6 @@
 import argparse
 import os
 import re
-import sys
 from pywikibot import xmlreader
 
 argparser = argparse.ArgumentParser()
@@ -96,11 +95,6 @@ single_trails_file = open(
 )
 
 problematic_trails_filename = trails_dirname + '/' + '_problematic_trails.txt'
-problematic_trails_file = open(
-    problematic_trails_filename,
-    encoding='utf-8',
-    mode='w'
-)
 
 trail_counter = 0
 
@@ -136,10 +130,16 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
             mode='w'
         )
     except IOError:
-        problematic_trails_file.write('problematic trail "' + trail + "\"\n")
-        problematic_trails_file.write("found in:\n")
-        for title in all_trails_titles[trail]:
-            problematic_trails_file.write(title + "\n")
+        with open(
+            problematic_trails_filename,
+            encoding='utf-8',
+            mode='a'
+        ) as problematic_trails_file:
+            problematic_traile_line = 'problematic trail "' + trail + '"'
+            problematic_trails_file.write(problematic_traile_line + "\n")
+            problematic_trails_file.write("found in:\n")
+            for title in all_trails_titles[trail]:
+                problematic_trails_file.write(title + "\n")
 
         continue
 
@@ -151,4 +151,3 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
     trail_titles_file.close()
 
 single_trails_file.close()
-problematic_trails_file.close()
