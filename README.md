@@ -48,7 +48,19 @@ The file `_problematic_trails.txt` includes trails that couldn't be used for
 file names.
 
 Each of the other trails gets a file called `trail_X_TRAIL_titles.txt`,
-where X is an index and TRAIL is the trail itself.
+where X is an index and TRAIL is the trail itself. Some trail characters
+that are hard to put in filenames are automatically replaced with
+ASCII names:
+
+* 200B: EXPLICITZEROWIDTHSPACE
+* 200E: EXPLICITLRM
+* 200F: EXPLICITRLM
+* 202C: EXPLICITPDF
+* 202D: EXPLICITLRO
+* 202E: EXPLICITRLO
+
+In the text of the file itself, these characters are written explicitly
+in double quotes.
 
 # Credits
 Author: Amir E. Aharoni

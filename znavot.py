@@ -49,6 +49,7 @@ common_trails_file = open(
     mode='r'
 )
 
+# If you are adding something here, document it also in README
 special_char_replacements = {
     u'\u200B': 'EXPLICITZEROWIDTHSPACE',
     u'\u200E': 'EXPLICITLRM',
