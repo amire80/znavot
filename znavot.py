@@ -94,10 +94,9 @@ for entry in dump.parse():
     if entry.ns not in ('0'):
         continue
 
-    # Before the space there is a ' ' char,
-    # whatever that is
+    # Before the space there is a no-break space
     trails = re.findall(
-        r'\]\]([^0-9<*";:|\'.,=+({}?!/  \n\t)[\]-]+)',
+        r'\]\]([^0-9<*"״”»^•;:|\'\\.,=+—({}?!/  \n\t)[\]-]+)',
         entry.text,
         re.UNICODE
     )
