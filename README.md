@@ -25,6 +25,9 @@ the whole big dump file.
 Use the `XXwiki-YYYYMMDD-pages-articles.xml` dump from
 [Wikimedia Downloads](http://download.wikimedia.org/).
 
+It's recommended to put dump files in `dumps/` while processing,
+so that there would be fewer non-code files in the main directory.
+
 ## Common trails
 Every language has a list of trails that are common and valid, and that
 don't need to be processed and counted. They are listed in a file in
