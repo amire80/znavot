@@ -17,6 +17,19 @@ with open('special_characters.yaml', 'r') as special_characters_file:
         Loader=YamlLoader
     )
 
+
+def replace_special_chars(trail):
+    escaped_trail = trail
+
+    for special_char in special_char_replacements:
+        escaped_trail = escaped_trail.replace(
+            special_char,
+            special_char_replacements[special_char]
+        )
+
+    return escaped_trail
+
+
 argparser = argparse.ArgumentParser()
 
 argparser.add_argument(
@@ -135,12 +148,7 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
 
     trail_titles_filename = trails_dirname + '/' + 'trail_' + trail_index_str
     trail_titles_filename += '_' + trail + '_titles.txt'
-
-    for special_char in special_char_replacements:
-        trail_titles_filename = trail_titles_filename.replace(
-            special_char,
-            special_char_replacements[special_char]
-        )
+    trail_titles_filename = replace_special_chars(trail_titles_filename)
 
     try:
         trail_titles_file = open(
