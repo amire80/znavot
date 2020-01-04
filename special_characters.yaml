@@ -17,6 +17,8 @@
 "\u200B": ZEROWIDTHSPACE
 "\u200E": LRM
 "\u200F": RLM
+"\u202A": LRE
+"\u202B": RLE
 "\u202C": PDF
 "\u202D": LRO
 "\u202E": RLO
