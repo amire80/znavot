@@ -8,8 +8,8 @@ I’ll add running instructions, better error handling, support for other langua
 and other much-needed features some time later.
 
 # Installation
-Before running, install pywikibot:
-    pip3 install pywikibot
+Before running, install the required packages:
+    pip3 install -r requirements.txt
 
 This repo includes a dummy `user-config.py`, which should be enough
 for processing the dump. In the future it will probably have real configuration
@@ -52,33 +52,10 @@ where X is an index and TRAIL is the trail itself.
 
 ## Special characters handling
 Some trail characters that are hard to put in filenames are automatically
-replaced with ASCII names:
+replaced with ASCII names. For a full list see the file
+`special_characters.yaml`.
 
-* 05B0: EXPLICITSHEVA
-* 05B1: EXPLICITHATAFSEGOL
-* 05B2: EXPLICITHATAFPATAH
-* 05B3: EXPLICITHATAFQAMATS
-* 05B4: EXPLICITHIRIQ
-* 05B5: EXPLICITTSERE
-* 05B6: EXPLICITSEGOL
-* 05B7: EXPLICITPATAH
-* 05B8: EXPLICITQAMATS
-* 05B9: EXPLICITHOLAM
-* 05BA: EXPLICITHOLAMHASER
-* 05BB: EXPLICITQUBUTS
-* 05BC: EXPLICITDAGESH
-* 05BF: EXPLICITRAFE
-* 05C1: EXPLICISHINDOT
-* 05C2: EXPLICISINDOT
-* 200B: EXPLICITZEROWIDTHSPACE
-* 200E: EXPLICITLRM
-* 200F: EXPLICITRLM
-* 202C: EXPLICITPDF
-* 202D: EXPLICITLRO
-* 202E: EXPLICITRLO
-* FFFC: EXPLICITOBJ
-
-In the text of the file itself, these characters are written explicitly
+In the text of the output file itself, these characters are written explicitly
 in double quotes.
 
 If you find more problematic characters that aren't here and you want

@@ -5,6 +5,17 @@ import argparse
 import os
 import re
 from pywikibot import xmlreader
+from yaml import load
+try:
+    from yaml import CLoader as YamlLoader
+except ImportError:
+    from yaml import Loader as YamlLoader
+
+with open('special_characters.yaml', 'r') as special_characters_file:
+    special_char_replacements = load(
+        special_characters_file,
+        Loader=YamlLoader
+    )
 
 argparser = argparse.ArgumentParser()
 
@@ -48,38 +59,6 @@ common_trails_file = open(
     encoding='utf-8',
     mode='r'
 )
-
-# If you are adding something here, document it also in README
-special_char_replacements = {
-    # Hebrew diacritics
-    u'\u05B0': 'EXPLICITSHEVA',
-    u'\u05B1': 'EXPLICITHATAFSEGOL',
-    u'\u05B2': 'EXPLICITHATAFPATAH',
-    u'\u05B3': 'EXPLICITHATAFQAMATS',
-    u'\u05B4': 'EXPLICITHIRIQ',
-    u'\u05B5': 'EXPLICITTSERE',
-    u'\u05B6': 'EXPLICITSEGOL',
-    u'\u05B7': 'EXPLICITPATAH',
-    u'\u05B8': 'EXPLICITQAMATS',
-    u'\u05B9': 'EXPLICITHOLAM',
-    u'\u05BA': 'EXPLICITHOLAMHASER',
-    u'\u05BB': 'EXPLICITQUBUTS',
-    u'\u05BC': 'EXPLICITDAGESH',
-    u'\u05BF': 'EXPLICITRAFE',
-    u'\u05C1': 'EXPLICISHINDOT',
-    u'\u05C2': 'EXPLICISINDOT',
-
-    # Zero-width characters
-    u'\u200B': 'EXPLICITZEROWIDTHSPACE',
-    u'\u200E': 'EXPLICITLRM',
-    u'\u200F': 'EXPLICITRLM',
-    u'\u202C': 'EXPLICITPDF',
-    u'\u202D': 'EXPLICITLRO',
-    u'\u202E': 'EXPLICITRLO',
-
-    # Hard-to-display characters
-    u'\uFFFC': 'EXPLICITOBJ',
-}
 
 for line in common_trails_file:
     common_trails[line.rstrip(os.linesep)] = True
