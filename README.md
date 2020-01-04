@@ -52,6 +52,7 @@ where X is an index and TRAIL is the trail itself. Some trail characters
 that are hard to put in filenames are automatically replaced with
 ASCII names:
 
+* 05BC: EXPLICITDAGESH
 * 200B: EXPLICITZEROWIDTHSPACE
 * 200E: EXPLICITLRM
 * 200F: EXPLICITRLM
