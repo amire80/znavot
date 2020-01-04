@@ -31,7 +31,7 @@ args = argparser.parse_args()
 if args.language:
     language = args.language
 else:
-    language_code_captures = re.findall(r'^(.+)wiki', args.dump_filename)
+    language_code_captures = re.findall(r'([a-z-]+)wiki', args.dump_filename)
     if len(language_code_captures) != 1:
         print('Cannot figure out the language code from the dump filename. ' +
               'Please provide one explicitly using --language.')
