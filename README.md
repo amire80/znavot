@@ -16,10 +16,18 @@ for processing the dump. In the future it will probably have real configuration
 to allow uploading of page lists.
 
 # Invoking
-    python3 znavot.py [-h] [--stop_after STOP_AFTER] dump_filename
+Simplest invocation:
 
-`--stop_after` is useful if you want to quickly test without processing
-the whole big dump file.
+    python3 znavot.py DUMP_FILENAME.xml
+
+## Optional arguments
+`--help` prints help.
+
+`--language_code=XX` uses XX as the language code. If not given, the script
+tries to guess it automatically from the dump file name.
+
+`--stop_after=N` stops after N pages. It is useful if you want to quickly
+test the script without processing the whole big dump file.
 
 # Input
 ## Content
@@ -33,14 +41,14 @@ so that there would be fewer non-code files in the main directory.
 Every language has a list of trails that are common and valid, and that
 don't need to be processed and counted. They are listed in a file in
 the `common_trails` directory. The file is a simple text file with one trail
-per line, and the file name is LANGUAGE_CODE.txt.
+per line, and the file name is `LANGUAGE_CODE.txt`.
 
 The script takes the language code from the `--language` argument.
 If it's not given, it tries to figure it out from the dump file name,
 and if this fails, too, the script exits with an error.
 
 # Output
-The output goes to the TRAILS_OUT directory.
+The output goes to the `TRAILS_OUT` directory.
 
 The file `_single_trails.txt` includes trails that were only found once.
 
@@ -65,7 +73,7 @@ is recommended. Paste the text, click the arrow down button, and you'll
 see the Unicode character names at the bottom. Patches welcome!
 
 # Credits
-Author: Amir E. Aharoni
+Author: Amir E. Aharoni <amir.aharoni@mail.huji.ac.il>
 
 License: GPL 3.0
 
