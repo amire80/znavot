@@ -16,6 +16,10 @@ with open('special_characters.yaml', 'r') as special_characters_file:
         special_characters_file,
         Loader=YamlLoader
     )
+for special_char in special_char_replacements:
+    special_char_replacements[special_char] = (
+        'EXPLICIT_' + special_char_replacements[special_char]
+    )
 
 
 def replace_special_chars(trail):
