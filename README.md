@@ -12,7 +12,8 @@ Before running, install pywikibot:
     pip3 install pywikibot
 
 This repo includes a dummy `user-config.py`, which should be enough
-for processing the dump.
+for processing the dump. In the future it will probably have real configuration
+to allow uploading of page lists.
 
 # Invoking
     python3 znavot.py [-h] [--stop_after STOP_AFTER] dump_filename
