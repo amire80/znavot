@@ -60,11 +60,12 @@ where X is an index and TRAIL is the trail itself.
 
 ## Special characters handling
 Some trail characters that are hard to put in filenames are automatically
-replaced with ASCII names. For a full list see the file
+escaped with readable ASCII-only names. For a full list see the file
 `special_characters.yaml`.
 
 In the text of the output file itself, these characters are written explicitly
-in double quotes.
+in double quotes. In the `_single_trails.txt` both explicit and
+escaped trails are mentioned.
 
 If you find more problematic characters that aren't here and you want
 to understand what they are,

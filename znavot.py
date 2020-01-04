@@ -144,7 +144,11 @@ for trail in sorted(all_trails_counts, key=all_trails_counts.get):
     print(instance_count_line)
 
     if instance_count == 1:
-        line = '* Trail "' + trail + '" found in [['
+        line = '* Trail "' + trail + '"'
+        escaped_trail = replace_special_chars(trail)
+        if escaped_trail != trail:
+            line += ' (escaped: "' + escaped_trail + '")'
+        line += ' found in [['
         line += list(all_trails_titles[trail])[0] + "]]\n"
         single_trails_file.write(line)
 
