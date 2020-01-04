@@ -48,20 +48,44 @@ The file `_problematic_trails.txt` includes trails that couldn't be used for
 file names.
 
 Each of the other trails gets a file called `trail_X_TRAIL_titles.txt`,
-where X is an index and TRAIL is the trail itself. Some trail characters
-that are hard to put in filenames are automatically replaced with
-ASCII names:
+where X is an index and TRAIL is the trail itself.
 
+## Special characters handling
+Some trail characters that are hard to put in filenames are automatically
+replaced with ASCII names:
+
+* 05B0: EXPLICITSHEVA
+* 05B1: EXPLICITHATAFSEGOL
+* 05B2: EXPLICITHATAFPATAH
+* 05B3: EXPLICITHATAFQAMATS
+* 05B4: EXPLICITHIRIQ
+* 05B5: EXPLICITTSERE
+* 05B6: EXPLICITSEGOL
+* 05B7: EXPLICITPATAH
+* 05B8: EXPLICITQAMATS
+* 05B9: EXPLICITHOLAM
+* 05BA: EXPLICITHOLAMHASER
+* 05BB: EXPLICITQUBUTS
 * 05BC: EXPLICITDAGESH
+* 05BF: EXPLICITRAFE
+* 05C1: EXPLICISHINDOT
+* 05C2: EXPLICISINDOT
 * 200B: EXPLICITZEROWIDTHSPACE
 * 200E: EXPLICITLRM
 * 200F: EXPLICITRLM
 * 202C: EXPLICITPDF
 * 202D: EXPLICITLRO
 * 202E: EXPLICITRLO
+* FFFC: EXPLICITOBJ
 
 In the text of the file itself, these characters are written explicitly
 in double quotes.
+
+If you find more problematic characters that aren't here and you want
+to understand what they are,
+[Richard Ishida's UniView tool](https://r12a.github.io/uniview/)
+is recommended. Paste the text, click the arrow down button, and you'll
+see the Unicode character names at the bottom. Patches welcome!
 
 # Credits
 Author: Amir E. Aharoni
